@@ -1,3 +1,397 @@
+:root {
+  color-scheme: light;
+  font-family: Georgia, "Palatino Linotype", "Book Antiqua", serif;
+  color: #3b2a20;
+  background: #f1e6cc;
+  --paper: #fbf3df;
+  --ink: #3b2a20;
+  --soft: #6b5545;
+  --red: #b5472f;
+  --mustard: #d9a429;
+  --teal: #2f7a76;
+  --olive: #7a8442;
+  --plum: #7b3f61;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 1rem;
+}
+
+/* ponytail: plain flat background, no texture; add paper-grain image if wanted */
 body {
-  background-color: #ecfbe6;
+  min-width: 320px;
+  margin: 0;
+  padding: 1rem clamp(0.75rem, 4vw, 3rem) 0;
+  background: #f1e6cc;
+  line-height: 1.7;
+}
+
+body::before,
+body > header::before {
+  display: none;
+}
+
+/* header: all details visible on first screen */
+body > header {
+  display: block;
+  max-width: 64rem;
+  margin: 0 auto 1.5rem;
+  padding: 1.5rem clamp(1rem, 4vw, 3rem) 1rem;
+  border: 3px double var(--ink);
+  border-top: 12px solid var(--red);
+  background: var(--paper);
+  box-shadow: 6px 6px 0 var(--mustard);
+  text-align: center;
+}
+
+body > header > p {
+  width: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  color: var(--soft);
+  font-style: italic;
+}
+
+body > header > p:first-child {
+  color: var(--red);
+  font-size: 0.85rem;
+  font-style: normal;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+body > header > p:first-child::before,
+body > header > p:first-child::after {
+  content: " \2766 ";
+  color: var(--mustard);
+}
+
+body > header > h1 {
+  max-width: none;
+  margin: 0.4rem 0;
+  padding: 0.4rem 0;
+  border-block: 1px solid var(--ink);
+  color: var(--ink);
+  font-size: clamp(2rem, 6vw, 3.8rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0 var(--mustard);
+}
+
+nav {
+  width: auto;
+  margin: 1rem 0 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav a {
+  display: block;
+  padding: 0.4rem 0.9rem;
+  border: 2px solid var(--ink);
+  color: #fff;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+nav li:nth-child(1) a { background: var(--red); }
+nav li:nth-child(2) a { background: var(--teal); }
+nav li:nth-child(3) a { background: var(--olive); }
+nav li:nth-child(4) a { background: var(--plum); }
+
+nav a:hover {
+  box-shadow: 3px 3px 0 var(--ink);
+  transform: translate(-2px, -2px);
+}
+
+a {
+  color: var(--teal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--red);
+}
+
+a:focus-visible {
+  outline: 3px solid var(--mustard);
+  outline-offset: 3px;
+}
+
+/* content */
+main {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  max-width: 64rem;
+  width: auto;
+  margin: 0 auto;
+}
+
+main > section,
+main > aside {
+  --accent: var(--red);
+  grid-column: auto;
+  width: auto;
+  margin: 0;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 2px solid var(--ink);
+  border-top: 10px solid var(--accent);
+  border-radius: 0;
+  background: var(--paper);
+  box-shadow: 5px 5px 0 var(--accent);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  scroll-margin-top: 1rem;
+}
+
+main > section:first-child,
+main > section:last-child {
+  grid-column: 1 / -1;
+}
+
+main > section:nth-child(2) { --accent: var(--teal); }
+main > section:nth-child(3) { --accent: var(--olive); }
+main > section:nth-child(4) { --accent: var(--plum); }
+
+main > aside {
+  --accent: var(--mustard);
+  background: #f6dd9a;
+  border-style: dashed;
+  border-top-style: solid;
+}
+
+h2,
+h3 {
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+h2 {
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px dotted var(--accent);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  letter-spacing: 0.02em;
+}
+
+h2::after {
+  display: none;
+}
+
+h3 {
+  margin: 1.5rem 0 0.5rem;
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-style: italic;
+}
+
+p,
+ul,
+ol {
+  margin-top: 0;
+}
+
+main p,
+main li,
+body > footer p {
+  color: var(--ink);
+}
+
+main > section > p:first-of-type::first-letter {
+  float: left;
+  margin: 0.1em 0.12em 0 0;
+  color: var(--accent);
+  font-size: 3.4em;
+  font-weight: 700;
+  line-height: 0.8;
+}
+
+main p:last-child,
+main ul:last-child,
+main ol:last-child {
+  margin-bottom: 0;
+}
+
+main li {
+  padding-left: 0.25rem;
+}
+
+main li + li {
+  margin-top: 0.6rem;
+}
+
+main li::marker {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+body > footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  max-width: 64rem;
+  width: auto;
+  margin: 1.5rem auto 0;
+  padding: 1rem clamp(1rem, 3vw, 2rem);
+  border: 0;
+  border-top: 6px double var(--ink);
+  border-radius: 0;
+  background: var(--ink);
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+body > footer p {
+  margin: 0;
+  color: #f1e6cc;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 700px) {
+  main {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+
+  main > section,
+  main > section:first-child,
+  main > section:last-child,
+  main > aside {
+    grid-column: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  nav a {
+    transition: none;
+  }
+}
+
+/* borders: vintage variant */
+main > section > header,
+main > section > footer {
+  margin: 0 0 1.25rem;
+  padding: 0.6rem 1rem;
+  border: 4px double var(--accent);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+main > section > header h2 {
+  margin-bottom: 0.3rem;
+}
+
+main > section > header p,
+main > section > footer p {
+  margin: 0;
+  color: var(--soft);
+  font-size: 0.95rem;
+  font-style: italic;
+}
+
+main > section > footer {
+  display: block;
+  width: auto;
+  margin: 1.5rem 0 0;
+  border-style: solid;
+  border-width: 3px 0 0;
+  border-top-style: dotted;
+  border-color: var(--accent);
+  background: none;
+  text-align: right;
+}
+
+main h3 {
+  display: inline-block;
+  padding: 0.2rem 0.8rem;
+  border: 3px ridge var(--accent);
+  background: var(--paper);
+  font-style: normal;
+}
+
+main ul {
+  padding: 0.9rem 1rem 0.9rem 2rem;
+  border: 2px dashed var(--accent);
+}
+
+main ol {
+  padding: 0.9rem 1rem 0.9rem 2.2rem;
+  border: 4px groove var(--accent);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+main li + li {
+  padding-top: 0.5rem;
+  border-top: 1px dotted var(--accent);
+}
+
+main dl {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border: 3px inset var(--accent);
+  background: #f4e7c4;
+}
+
+main dt {
+  color: var(--accent);
+  font-weight: 700;
+  font-variant: small-caps;
+}
+
+main dd {
+  margin: 0 0 0.7rem 1rem;
+  padding-left: 0.7rem;
+  border-left: 5px double var(--accent);
+}
+
+main dd:last-child {
+  margin-bottom: 0;
+}
+
+main > aside h3 {
+  border-style: outset;
+}
+
+body > header > p:first-child {
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dashed var(--red);
+}
+
+body > header > p:last-of-type {
+  padding-top: 0.4rem;
+  border-top: 3px dotted var(--teal);
 }
