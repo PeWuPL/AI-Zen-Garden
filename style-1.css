@@ -1,3 +1,338 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #e8f3ff;
+  background: #07111f;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --glass: rgba(17, 37, 59, 0.58);
+  --glass-strong: rgba(19, 43, 68, 0.78);
+  --line: rgba(194, 224, 255, 0.16);
+  --muted: #aec3d9;
+  --cyan: #89e5ec;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+}
+
 body {
-  background-color: #dfecff;
+  min-width: 320px;
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 15% 12%, rgba(41, 126, 172, 0.26), transparent 34rem),
+    radial-gradient(ellipse at 88% 45%, rgba(105, 75, 173, 0.19), transparent 38rem),
+    linear-gradient(155deg, #07111f 0%, #0b1b2b 48%, #101a30 100%);
+  background-attachment: fixed;
+  line-height: 1.75;
+}
+
+body::before {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background-image: radial-gradient(rgba(205, 232, 255, 0.12) 0.7px, transparent 0.7px);
+  background-size: 28px 28px;
+  content: "";
+  mask-image: linear-gradient(to bottom, black, transparent 78%);
+  pointer-events: none;
+}
+
+header {
+  position: relative;
+  display: grid;
+  grid-template-rows: minmax(100svh, auto) auto auto auto;
+  gap: 1.25rem;
+  padding: 0 clamp(1.25rem, 5vw, 5rem) 3rem;
+  isolation: isolate;
+}
+
+header::before {
+  position: absolute;
+  z-index: -1;
+  top: 8svh;
+  left: 50%;
+  width: min(76vw, 54rem);
+  aspect-ratio: 1;
+  border: 1px solid rgba(159, 222, 255, 0.09);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(52, 139, 185, 0.2), rgba(38, 82, 129, 0.08) 43%, transparent 70%);
+  box-shadow: 0 0 110px rgba(80, 174, 220, 0.12), inset 0 0 70px rgba(109, 185, 226, 0.07);
+  content: "";
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+header > h1 {
+  grid-row: 1;
+  align-self: center;
+  justify-self: center;
+  max-width: 15ch;
+  margin: 0;
+  color: #f4faff;
+  font-size: clamp(3rem, 8vw, 7.25rem);
+  font-weight: 650;
+  letter-spacing: -0.065em;
+  line-height: 1.04;
+  text-align: center;
+  text-wrap: balance;
+  text-shadow: 0 8px 45px rgba(99, 206, 232, 0.23);
+}
+
+header > p,
+nav,
+main > section,
+main > aside,
+footer {
+  width: min(100%, 96rem);
+  margin-inline: auto;
+  border: 1px solid var(--line);
+  border-radius: 1.5rem;
+  background: var(--glass);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22), inset 0 1px rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+header > p {
+  padding: 1rem clamp(1.25rem, 4vw, 2.5rem);
+  color: var(--muted);
+}
+
+header > p:first-child {
+  grid-row: 2;
+  margin-bottom: 0;
+}
+
+header > p:last-of-type {
+  grid-row: 3;
+  margin-top: 0;
+}
+
+nav {
+  grid-row: 4;
+  padding: 0.75rem;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: var(--cyan);
+  text-decoration-color: rgba(137, 229, 236, 0.45);
+  text-underline-offset: 0.2em;
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+nav a {
+  display: block;
+  padding: 0.65rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: #d5e7f7;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #fff;
+}
+
+nav a:hover {
+  border-color: var(--line);
+  background: rgba(174, 220, 255, 0.1);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
+  border-radius: 0.25rem;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  width: min(100% - clamp(2rem, 6vw, 6rem), 96rem);
+  margin: 0 auto;
+}
+
+main > section,
+main > aside {
+  margin: 0;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  scroll-margin-top: 1.5rem;
+}
+
+main > section:first-child,
+main > aside,
+main > section:last-child {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 1000px) {
+  main {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  main > section:first-child,
+  main > section:last-child {
+    grid-column: 1 / -1;
+  }
+
+  main > section:nth-child(2) {
+    grid-column: span 7;
+  }
+
+  main > section:nth-child(3) {
+    grid-column: span 5;
+  }
+
+  main > section:nth-child(4) {
+    grid-column: span 8;
+  }
+
+  main > aside {
+    grid-column: span 4;
+  }
+}
+
+h2,
+h3 {
+  color: #f1f8ff;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+h2 {
+  margin: 0 0 1.25rem;
+  font-size: clamp(1.55rem, 3vw, 2.2rem);
+  letter-spacing: -0.035em;
+}
+
+h3 {
+  margin: 2rem 0 0.75rem;
+  font-size: 1.15rem;
+}
+
+h2::after {
+  display: block;
+  width: 3.25rem;
+  height: 2px;
+  margin-top: 0.8rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--cyan), transparent);
+  content: "";
+}
+
+p,
+ul,
+ol {
+  margin-top: 0;
+}
+
+main p,
+main li,
+footer p {
+  color: var(--muted);
+}
+
+main p:last-child,
+main ul:last-child,
+main ol:last-child {
+  margin-bottom: 0;
+}
+
+main li {
+  padding-left: 0.35rem;
+}
+
+main li + li {
+  margin-top: 0.7rem;
+}
+
+main li::marker {
+  color: var(--cyan);
+}
+
+main aside {
+  border-color: rgba(137, 229, 236, 0.24);
+  background: linear-gradient(120deg, rgba(41, 104, 130, 0.52), rgba(30, 47, 79, 0.7));
+}
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  margin-block: 1.25rem 3rem;
+  padding: 1.25rem clamp(1.5rem, 4vw, 3rem);
+}
+
+footer p {
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  header {
+    padding-inline: 1rem;
+  }
+
+  header > h1 {
+    max-width: 11ch;
+    font-size: clamp(2.8rem, 14vw, 5rem);
+  }
+
+  header::before {
+    width: 110vw;
+  }
+
+  main {
+    grid-template-columns: minmax(0, 1fr);
+    width: min(100% - 2rem, 70rem);
+    gap: 1rem;
+  }
+
+  main > section,
+  main > aside,
+  main > section:first-child,
+  main > section:last-child {
+    grid-column: 1;
+  }
+
+  nav ul {
+    justify-content: stretch;
+  }
+
+  nav li {
+    flex: 1 1 12rem;
+    text-align: center;
+  }
+
+  footer {
+    width: min(100% - 2rem, 70rem);
+    margin-bottom: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  a {
+    transition: none;
+  }
 }
