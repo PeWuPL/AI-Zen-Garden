@@ -22,12 +22,15 @@ html {
   scroll-padding-top: 1rem;
 }
 
-/* ponytail: plain flat background, no texture; add paper-grain image if wanted */
+/* ponytail: inline SVG tile (retro diamonds + dots); swap url() for a real paper-texture file if wanted */
 body {
   min-width: 320px;
   margin: 0;
   padding: 1rem clamp(0.75rem, 4vw, 3rem) 0;
-  background: #f1e6cc;
+  background-color: #f1e6cc;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 6 74 40 40 74 6 40Z' fill='none' stroke='%23b5472f' stroke-opacity='.28' stroke-width='2'/%3E%3Cpath d='M40 20 60 40 40 60 20 40Z' fill='%23d9a429' fill-opacity='.18'/%3E%3Ccircle cx='40' cy='40' r='4' fill='%232f7a76' fill-opacity='.35'/%3E%3Ccircle cx='0' cy='0' r='5' fill='%237b3f61' fill-opacity='.22'/%3E%3Ccircle cx='80' cy='0' r='5' fill='%237b3f61' fill-opacity='.22'/%3E%3Ccircle cx='0' cy='80' r='5' fill='%237b3f61' fill-opacity='.22'/%3E%3Ccircle cx='80' cy='80' r='5' fill='%237b3f61' fill-opacity='.22'/%3E%3C/svg%3E");
+  background-size: 80px 80px;
+  background-attachment: fixed;
   line-height: 1.7;
 }
 
